@@ -67,7 +67,7 @@ public class TestAdmin {
                 this.admin.changeCapacity("Test", 2015, j);
                 int currentCapacity = this.admin.getClassCapacity("Test", 2015);
                 try {
-                    assertFalse(pastCapacity < currentCapacity);
+                    assertTrue(pastCapacity < currentCapacity);
                 }
                 catch (Throwable t){
                     collector.addError(t);
