@@ -58,6 +58,25 @@ public class TestAdmin {
     }
 
     @Test
+    public void testValidChangeCapacity(){
+        Integer i, j;
+        for (i = 5; i <= 200; i++) {
+            this.admin.createClass("Test",2015, "Instructor", i);
+            int pastCapacity = this.admin.getClassCapacity("Test", 2015);
+            for (j = i; j < i + 10; j ++) {
+                this.admin.changeCapacity("Test", 2015, j);
+                int currentCapacity = this.admin.getClassCapacity("Test", 2015);
+                try {
+                    assertFalse(pastCapacity < currentCapacity);
+                }
+                catch (Throwable t){
+                    collector.addError(t);
+                }
+            }
+        }
+    }
+
+    @Test
     public void testUniqueInstructors() {
         String instructor = "Instructor";
         String[] unique = new String[5];
