@@ -33,35 +33,9 @@ public class TestAdmin {
     }
 
     @Test
-    public void testClassMadeInPast() {
-        Integer i;
-        for (i = 0; i <= 2016; i++) {
-            this.admin.createClass("Test",i, "Instructor", 15);
-            if (i <= 2016) {
-                try {
-                    assert(!(this.admin.classExists("Test", i)));
-                }
-                catch (Throwable t){
-                    collector.addError(t);
-                }
-            }
-        }
-    }
-
-    @Test
-    public void testClassValid() {
-        Integer i;
-        for (i = 2017; i <= 4000; i++) {
-            this.admin.createClass("Test",i, "Instructor", 15);
-            if (i > 2016) {
-                try {
-                    assertTrue(this.admin.classExists("Test", i));
-                }
-                catch (Throwable t){
-                    collector.addError(t);
-                }
-            }
-        }
+    public void testInvalidClass2() {
+        this.admin.createClass("Test", -1, "Instructor", 15);
+        assertFalse(this.admin.classExists("Test", -1));
     }
 
     @Test
